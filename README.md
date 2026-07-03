@@ -1,6 +1,10 @@
-#  Housing Price Prediction System
+# Housing Price Prediction System
 
-🔗 **Live App:** [https://house-price-predictor-aastha.streamlit.app/](https://house-price-predictor-aastha.streamlit.app/)
+A modern, interactive **House Price Prediction** web app built with **Streamlit** and **Linear Regression**, by **Aastha Bajpai** — MCA student at NIT Jamshedpur.
+
+🔗 **Live Site:** [house-price-predictor-aastha.streamlit.app](https://house-price-predictor-aastha.streamlit.app/)
+
+---
 
 ## Project Overview
 
