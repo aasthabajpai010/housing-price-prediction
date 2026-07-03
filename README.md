@@ -1,5 +1,7 @@
 #  Housing Price Prediction System
 
+🔗 **Live App:** [https://house-price-predictor-aastha.streamlit.app/](https://house-price-predictor-aastha.streamlit.app/)
+
 ## Project Overview
 
 This project predicts house prices using Machine Learning and Linear Regression. It provides an interactive Streamlit web application where users can enter house details and get an estimated property price instantly.
@@ -154,7 +156,6 @@ The application displays:
 
 * Support multiple machine learning algorithms
 * Add model comparison dashboard
-* Deploy application online
 * Add advanced feature engineering
 * Improve prediction accuracy
 
@@ -163,4 +164,3 @@ The application displays:
 ## Author
 
 **Aastha Bajpai**
-MCA Student, NIT Jamshedpur
