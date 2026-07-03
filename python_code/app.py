@@ -208,6 +208,8 @@
 #     st.write(data.head())
 
 
+import os
+
 import streamlit as st
 
 import pandas as pd
@@ -310,12 +312,21 @@ st.image(
 # -------------------------------------------------
 # LOAD DATASET
 # -------------------------------------------------
+# NOTE: Streamlit Cloud runs the app from the repo root, not from
+# python_code/, so a bare "Housing.csv" path breaks deployment.
+# Build an absolute path relative to this file instead, and go up
+# one directory into dataset/.
 
-data = pd.read_csv("Housing.csv")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_PATH = os.path.join(BASE_DIR, "..", "dataset", "Housing.csv")
+
+data = pd.read_csv(CSV_PATH)
 
 # Handle missing values
+# (fillna(method="ffill") was removed in newer pandas versions;
+# use .ffill() instead)
 
-data = data.fillna(method='ffill')
+data = data.ffill()
 
 # -------------------------------------------------
 # ENCODE CATEGORICAL DATA
@@ -386,23 +397,23 @@ bathrooms = st.sidebar.number_input("Bathrooms", value=2)
 
 stories = st.sidebar.number_input("Stories", value=2)
 
-mainroad = st.sidebar.selectbox("Main Road", [0,1])
+mainroad = st.sidebar.selectbox("Main Road", [0, 1])
 
-guestroom = st.sidebar.selectbox("Guest Room", [0,1])
+guestroom = st.sidebar.selectbox("Guest Room", [0, 1])
 
-basement = st.sidebar.selectbox("Basement", [0,1])
+basement = st.sidebar.selectbox("Basement", [0, 1])
 
-hotwaterheating = st.sidebar.selectbox("Hot Water Heating", [0,1])
+hotwaterheating = st.sidebar.selectbox("Hot Water Heating", [0, 1])
 
-airconditioning = st.sidebar.selectbox("Air Conditioning", [0,1])
+airconditioning = st.sidebar.selectbox("Air Conditioning", [0, 1])
 
 parking = st.sidebar.number_input("Parking", value=1)
 
-prefarea = st.sidebar.selectbox("Preferred Area", [0,1])
+prefarea = st.sidebar.selectbox("Preferred Area", [0, 1])
 
 furnishingstatus = st.sidebar.selectbox(
     "Furnishing Status",
-    [0,1,2]
+    [0, 1, 2]
 )
 
 # -------------------------------------------------
@@ -429,7 +440,6 @@ custom_data = [[
 custom_scaled = scaler.transform(custom_data)
 
 # -------------------------------------------------
-# -------------------------------------------------
 # PREDICTION BUTTON
 # -------------------------------------------------
 
@@ -445,8 +455,8 @@ if st.button("Predict House Price"):
         f"Predicted House Price: ₹ {price:,.2f}"
     )
     st.info(
-    f"Approx Price: {lakh:.2f} Lakh"
-)
+        f"Approx Price: {lakh:.2f} Lakh"
+    )
     st.info(
         f"Approx Price: {crore:.2f} Crore"
     )
